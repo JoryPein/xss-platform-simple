@@ -8,7 +8,7 @@ services:
       - ./xsspot:/root/xsspot
       - ./xssdata:/root/xssdata
     working_dir: /root/xsspot
-    command: "/bin/bash -c \"./run.sh\""
+    command: "/bin/bash -c \"chmod +x ./run.sh && ./run.sh\""
     ports:
       - "80:80"
   xssapi:
@@ -17,7 +17,7 @@ services:
       - ./xssapi:/root/xssapi
       - ./xssdata:/root/xssdata
     working_dir: /root/xssapi
-    command: "/bin/bash -c \"./build_api.sh && npm install && node ./index.js\""
+    command: "/bin/bash -c \"chmod +x ./build_api.sh && ./build_api.sh && npm install && node ./index.js\""
     ports:
       - "8099:8099"
     depends_on:
