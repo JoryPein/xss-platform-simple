@@ -1,0 +1,1 @@
+npm init -f && npm install express zazler
