@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"database/sql"
@@ -9,15 +9,15 @@ import (
 
 const (
 	dbDriverName = "sqlite3"
-	dbName       = "../xssdata/data.db3"
+	dbName       = "./data.db3"
 )
 
 type cross struct {
-	Ip string
-	Port int
-	Url string
+	Ip     string
+	Port   int
+	Url    string
 	Header string
-	Body string
+	Body   string
 }
 
 func createTable(db *sql.DB) error {
