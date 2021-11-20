@@ -46,7 +46,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Run() {
+func Run(port int, ip, pass, sslcrt, sslkey string) {
 	db, err = sql.Open(dbDriverName, dbName)
 	if checkErr(err) {
 		fmt.Println(err)
@@ -55,9 +55,26 @@ func Run() {
 	if checkErr(err) {
 		fmt.Println(err)
 	}
-	http.HandleFunc("/", index)
-	fmt.Println("xsspot running on 80")
-	if err := http.ListenAndServe("0.0.0.0:80", nil); err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+
+	go func() {
+		httpserver := http.NewServeMux()
+		httpserver.HandleFunc("/", index)
+		fmt.Println("xsspot running on 80")
+		if err := http.ListenAndServe("0.0.0.0:80", httpserver); err != nil {
+			log.Fatal("ListenAndServe: ", err)
+		}
+	}()
+
+	go func() {
+		httpserver := http.NewServeMux()
+		httpserver.HandleFunc("/", index)
+		fmt.Println("xsspot running on 443")
+		if sslcrt != "" && sslkey != "" {
+			if err := http.ListenAndServeTLS("0.0.0.0:443", sslcrt, sslkey, httpserver); err != nil {
+				log.Fatal("ListenAndServeTLS: ", err)
+			}
+		}
+	}()
+	select {}
+
 }

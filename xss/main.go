@@ -8,7 +8,7 @@ import (
 
 var (
 	mode   string
-	port   string
+	port   int
 	ip     string
 	pass   string
 	sslcrt string
@@ -17,16 +17,16 @@ var (
 
 func main() {
 	flag.StringVar(&mode, "mode", "", "run mode,server or client")
-	flag.StringVar(&port, "port", "9999", "server port")
+	flag.IntVar(&port, "port", 9999, "server port")
 	flag.StringVar(&ip, "ip", "", "Listen ip")
 	flag.StringVar(&mode, "pass", "", "Connect password")
-	flag.StringVar(&mode, "sslcrt", "", "sslcrt")
-	flag.StringVar(&mode, "sslkey", "", "sslkey")
+	flag.StringVar(&sslcrt, "sslcrt", "./server.crt", "sslcrt")
+	flag.StringVar(&sslkey, "sslkey", "./server.key", "sslkey")
 	flag.Parse()
 	if mode == "server" {
-		server.Run()
+		server.Run(port, ip, pass, sslcrt, sslkey)
 	} else if mode == "client" {
-		client.Run()
+		client.Run(port, ip, pass)
 	}
 
 }
