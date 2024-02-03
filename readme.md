@@ -1,19 +1,20 @@
-## 服务概述
 
-此服务需要使用到80和8099两个端口，请确保这两个端口没有被占用。该服务提供了一个Web应用，通过Docker容器化部署，方便快捷。
+# 服务概述
+
+:rocket: 该服务需要使用80和8099两个端口，请确保这两个端口没有被占用。该服务提供了一个通过Docker容器化部署的Web应用，方便快捷。
 
 ## 安装步骤
 
-1. 克隆仓库到本地：
+1. 将仓库克隆到本地：
 
    ```shell
-   git clone https://github.com/your/repository.git
+   git clone https://github.com/JoryPein/xss-platform-simple.git  
    ```
 
 2. 进入项目目录：
 
    ```shell
-   cd your/repository
+   cd xss-platform-simple
    ```
 
 3. 启动服务：
@@ -24,7 +25,7 @@
 
    此命令将在后台启动容器，确保端口80和8099没有被占用。
 
-4. 完成安装后，通过以下步骤验证服务是否正常运行。
+4. 完成安装后，请通过以下步骤验证服务是否正常运行。
 
 ## 验证服务
 
@@ -54,4 +55,4 @@ curl http://<ip>:8099/api/cross.json
 
 ## 反馈与贡献
 
-欢迎提出问题、报告bug或贡献代码。请在GitHub上提交issue或pull request。感谢您的参与和支持！
+🙌 欢迎提出问题、报告bug或贡献代码。请在GitHub上提交issue或pull request。感谢您的参与和支持！
